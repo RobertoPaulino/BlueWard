@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #0F172A;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #0F172A;
+}
+
+/* User avatar tooltip styles */
+.userAvatar {
+  position: relative;
+  cursor: pointer;
+}
+
+.userAvatar:hover::after {
+  content: attr(data-username);
+  position: absolute;
+  bottom: -30px;
+  right: 0;
+  background-color: rgba(15, 23, 42, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .headerRight {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  
+  .userName {
+    font-size: 14px;
+  }
+  
+  .dashboardContent {
+    padding: 12px;
+  }
+  
+  .welcomeText {
+    font-size: 20px;
+  }
+  
+  .userTypeText {
+    font-size: 14px;
+  }
+  
+  .demoMessage {
+    padding: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .demoMessageTitle {
+    font-size: 16px;
+  }
+  
+  .demoMessageText {
+    font-size: 14px;
+    line-height: 20px;
+  }
+} 
