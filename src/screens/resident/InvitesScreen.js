@@ -26,6 +26,7 @@ const InvitesScreen = () => {
     validDays: 1,
     multiUse: true,
     guestId: null,
+    guestName: '',
     guestEmail: '',
     guestPhone: '',
   });
@@ -45,6 +46,7 @@ const InvitesScreen = () => {
       id: Math.max(...invites.map(i => i.id)) + 1,
       createdBy: currentUser.id,
       guestId: inviteData.guestId,
+      guestName: inviteData.guestName,
       validDays: inviteData.validDays,
       multiUse: inviteData.multiUse,
       code: `${currentUser.username.substring(0, 2).toUpperCase()}${Math.floor(10000 + Math.random() * 90000)}`,
@@ -61,6 +63,7 @@ const InvitesScreen = () => {
       validDays: 1,
       multiUse: true,
       guestId: null,
+      guestName: '',
       guestEmail: '',
       guestPhone: '',
     });
@@ -166,6 +169,17 @@ const InvitesScreen = () => {
       return (
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>{translation.resident.selectGuest}</Text>
+          
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputLabel}>{translation.guest.name}</Text>
+            <TextInput
+              style={styles.textInput}
+              value={inviteData.guestName}
+              onChangeText={(text) => setInviteData({...inviteData, guestName: text})}
+              placeholder={translation.guest.guestName || "Guest Name"}
+              placeholderTextColor={theme.colors.placeholder}
+            />
+          </View>
           
           <View style={styles.inputContainer}>
             <Text style={styles.inputLabel}>{translation.resident.enterEmail}</Text>
