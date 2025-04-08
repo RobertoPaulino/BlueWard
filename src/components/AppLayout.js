@@ -7,53 +7,66 @@ import UserTypeSwitcher from './UserTypeSwitcher';
 import Sidebar from './Sidebar';
 import { useUser } from '../context/UserContext';
 import logoImage from '../assets/images/logoW.png';
+import Icon from './Icon';
 
-// Icon components using FontAwesome
+// Icon components using local SVG icons
 const InfoIcon = () => (
   <View style={styles.menuIcon}>
-    <i className="fas fa-info-circle" style={{
-      fontSize: 20, 
-      color: theme.colors.primary,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}></i>
+    <Icon 
+      name="info-circle"
+      size={20}
+      style={{
+        color: theme.colors.primary,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    />
   </View>
 );
 
 const AccountIcon = () => (
   <View style={styles.menuIcon}>
-    <i className="fas fa-user-circle" style={{
-      fontSize: 20, 
-      color: theme.colors.primary,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}></i>
+    <Icon 
+      name="user-circle"
+      size={20}
+      style={{
+        color: theme.colors.primary,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    />
   </View>
 );
 
 const SettingsIcon = () => (
   <View style={styles.menuIcon}>
-    <i className="fas fa-cog" style={{
-      fontSize: 20, 
-      color: theme.colors.primary,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}></i>
+    <Icon 
+      name="cog"
+      size={20}
+      style={{
+        color: theme.colors.primary,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    />
   </View>
 );
 
 const AppSettingsIcon = () => (
   <View style={styles.menuIcon}>
-    <i className="fas fa-sliders-h" style={{
-      fontSize: 20, 
-      color: theme.colors.primary,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}></i>
+    <Icon 
+      name="sliders-h"
+      size={20}
+      style={{
+        color: theme.colors.primary,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    />
   </View>
 );
 
@@ -188,13 +201,16 @@ const AppLayout = ({ children, navigateTo }) => {
   const HamburgerIcon = () => (
     <TouchableOpacity style={styles.hamburger} onPress={toggleMenu}>
       <View style={styles.hamburgerIconContainer}>
-        <i className="fas fa-bars" style={{
-          fontSize: 20, 
-          color: 'white',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}></i>
+        <Icon 
+          name="bars"
+          size={20}
+          style={{
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        />
       </View>
     </TouchableOpacity>
   );
@@ -263,13 +279,16 @@ const AppLayout = ({ children, navigateTo }) => {
         className="menuItemHover"
       >
         <View style={styles.menuIcon}>
-          <i className="fas fa-sign-out-alt" style={{
-            fontSize: 20, 
-            color: theme.colors.danger,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}></i>
+          <Icon 
+            name="sign-out-alt"
+            size={20}
+            style={{
+              color: theme.colors.danger,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          />
         </View>
         <Text style={styles.menuItemText}>{translation.auth?.logout || 'Logout'}</Text>
       </TouchableOpacity>
@@ -329,13 +348,16 @@ const AppLayout = ({ children, navigateTo }) => {
                   className="userAvatar" 
                   data-username={currentUser ? currentUser.fullName : ''}
                 >
-                  <i className="fas fa-user" style={{
-                    fontSize: 16, 
-                    color: 'white',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}></i>
+                  <Icon 
+                    name="user"
+                    size={16}
+                    style={{
+                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  />
                 </View>
               </TouchableOpacity>
             </View>

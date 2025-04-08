@@ -6,6 +6,7 @@ import AppLayout from './components/AppLayout';
 import LanguageSelector from './components/LanguageSelector';
 import theme from './styles/theme';
 import logoImage from './assets/images/logoW.png';
+import Icon from './components/Icon';
 
 // Import dashboard components
 import {
@@ -87,7 +88,7 @@ const LoginScreen = () => {
           <Text style={styles.loginButtonText}>
             {isLoading ? translation.common.loading : (
               <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                <i className="fas fa-sign-in-alt" style={{fontSize: 16}}></i>
+                <Icon name="sign-in-alt" style={{fontSize: 16}} />
                 <Text style={{marginLeft: 8, color: 'white', fontWeight: 'bold'}}>{translation.auth.signIn}</Text>
               </View>
             )}
@@ -102,7 +103,7 @@ const LoginScreen = () => {
               onPress={() => handleSocialLogin('Gmail')}
             >
               <View style={styles.socialButtonContent}>
-                <i className="fab fa-google" style={{fontSize: 16, color: 'white'}}></i>
+                <Icon name="google" style={{fontSize: 16, color: 'white'}} />
                 <Text style={styles.socialButtonText}>Gmail</Text>
               </View>
             </TouchableOpacity>
@@ -112,7 +113,7 @@ const LoginScreen = () => {
               onPress={() => handleSocialLogin('Apple')}
             >
               <View style={styles.socialButtonContent}>
-                <i className="fab fa-apple" style={{fontSize: 16, color: 'white'}}></i>
+                <Icon name="apple" style={{fontSize: 16, color: 'white'}} />
                 <Text style={styles.socialButtonText}>Apple</Text>
               </View>
             </TouchableOpacity>
@@ -122,7 +123,7 @@ const LoginScreen = () => {
               onPress={() => handleSocialLogin('X')}
             >
               <View style={styles.socialButtonContent}>
-                <i className="fab fa-twitter" style={{fontSize: 16, color: 'white'}}></i>
+                <Icon name="twitter" style={{fontSize: 16, color: 'white'}} />
                 <Text style={styles.socialButtonText}>X</Text>
               </View>
             </TouchableOpacity>
@@ -130,34 +131,34 @@ const LoginScreen = () => {
         </View>
         
         <Text style={styles.forgotPassword}>
-          <i className="fas fa-key" style={{marginRight: 8, fontSize: 12}}></i>
+          <Icon name="key" style={{marginRight: 8, fontSize: 12}} />
           {translation.auth.forgotPassword}
         </Text>
         
         {/* Demo credentials */}
         <View style={styles.demoCredentials}>
           <Text style={styles.demoTitle}>
-            <i className="fas fa-info-circle" style={{marginRight: 8}}></i>
+            <Icon name="info-circle" style={{marginRight: 8}} />
             {translation.auth.demoCredentials}
           </Text>
           <Text style={styles.demoText}>
-            <i className="fas fa-home" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+            <Icon name="home" style={{width: 20, textAlign: 'center', marginRight: 8}} />
             {translation.auth.resident}: john_resident
           </Text>
           <Text style={styles.demoText}>
-            <i className="fas fa-user" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+            <Icon name="user" style={{width: 20, textAlign: 'center', marginRight: 8}} />
             {translation.auth.guest}: bob_guest
           </Text>
           <Text style={styles.demoText}>
-            <i className="fas fa-shield-alt" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+            <Icon name="shield-alt" style={{width: 20, textAlign: 'center', marginRight: 8}} />
             {translation.auth.security}: guard_main
           </Text>
           <Text style={styles.demoText}>
-            <i className="fas fa-user-shield" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+            <Icon name="user-shield" style={{width: 20, textAlign: 'center', marginRight: 8}} />
             {translation.auth.admin}: admin_super
           </Text>
           <Text style={styles.demoText}>
-            <i className="fas fa-unlock" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+            <Icon name="unlock" style={{width: 20, textAlign: 'center', marginRight: 8}} />
             {translation.auth.noPasswordRequired}
           </Text>
         </View>
@@ -177,23 +178,23 @@ const DashboardContent = () => {
         return (
           <View style={styles.dashboardFeature}>
             <Text style={styles.featureTitle}>
-              <i className="fas fa-tasks" style={{marginRight: 8}}></i>
+              <Icon name="tasks" style={{marginRight: 8}} />
               {translation.resident.features}:
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-envelope" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="envelope" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.resident.manageInvites}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-user-friends" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="user-friends" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.resident.viewFriendList}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-clipboard-check" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="clipboard-check" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.resident.checkInOutFacility}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-bolt" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="bolt" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.resident.enableFastCheckIn}
             </Text>
           </View>
@@ -203,23 +204,23 @@ const DashboardContent = () => {
         return (
           <View style={styles.dashboardFeature}>
             <Text style={styles.featureTitle}>
-              <i className="fas fa-tasks" style={{marginRight: 8}}></i>
+              <Icon name="tasks" style={{marginRight: 8}} />
               {translation.guest.features}:
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-envelope-open" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="envelope-open" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.guest.viewInvites}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-user-friends" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="user-friends" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.guest.manageFriendList}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-clipboard-check" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="clipboard-check" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.guest.checkInOutFacility}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-level-up-alt" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="level-up-alt" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.guest.upgradeStatus}
             </Text>
           </View>
@@ -229,23 +230,23 @@ const DashboardContent = () => {
         return (
           <View style={styles.dashboardFeature}>
             <Text style={styles.featureTitle}>
-              <i className="fas fa-tasks" style={{marginRight: 8}}></i>
+              <Icon name="tasks" style={{marginRight: 8}} />
               {translation.security.features}:
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-search" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="search" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.security.searchViewInvites}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-check-double" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="check-double" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.security.processCheckInOut}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-bell" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="bell" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.security.manageNotifications}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-clipboard-list" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="clipboard-list" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.security.viewVisitorLogs}
             </Text>
           </View>
@@ -255,23 +256,23 @@ const DashboardContent = () => {
         return (
           <View style={styles.dashboardFeature}>
             <Text style={styles.featureTitle}>
-              <i className="fas fa-tasks" style={{marginRight: 8}}></i>
+              <Icon name="tasks" style={{marginRight: 8}} />
               {translation.admin.features}:
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-crown" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="crown" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.admin.createVIPInvites}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-link" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="link" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.admin.linkGuests}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-user-slash" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="user-slash" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.admin.disableAccounts}
             </Text>
             <Text style={styles.featureItem}>
-              <i className="fas fa-shield-alt" style={{width: 20, textAlign: 'center', marginRight: 8}}></i>
+              <Icon name="shield-alt" style={{width: 20, textAlign: 'center', marginRight: 8}} />
               {translation.admin.manageGuards}
             </Text>
           </View>
@@ -300,7 +301,7 @@ const DashboardContent = () => {
         
         <View style={styles.demoMessage}>
           <Text style={styles.demoMessageTitle}>
-            <i className="fas fa-info-circle" style={{marginRight: 8}}></i>
+            <Icon name="info-circle" style={{marginRight: 8}} />
             {translation.dashboard.demoMode}
           </Text>
           <Text style={styles.demoMessageText}>

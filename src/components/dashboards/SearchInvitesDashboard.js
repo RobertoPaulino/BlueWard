@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList, Modal, Image } from 'react-native';
 import { useLanguage } from '../../context/LanguageContext';
 import BaseDashboard from './BaseDashboard';
+import Icon from '../Icon';
 import theme from '../../styles/theme';
 import mockID from '../../assets/images/mockID.png';
 
@@ -128,12 +129,12 @@ const SearchInvitesDashboard = () => {
   // Get sort icon for a column
   const getSortIcon = (columnName) => {
     if (sortColumn !== columnName) {
-      return <i className="fas fa-sort" style={{ marginLeft: 4, fontSize: 10, opacity: 0.5 }}></i>;
+      return <Icon name="sort" size={10} color={theme.colors.text} style={{ marginLeft: 4, opacity: 0.5 }} />;
     }
     
     return sortDirection === 'asc' 
-      ? <i className="fas fa-sort-up" style={{ marginLeft: 4, fontSize: 10 }}></i>
-      : <i className="fas fa-sort-down" style={{ marginLeft: 4, fontSize: 10 }}></i>;
+      ? <Icon name="sort-up" size={10} color={theme.colors.text} style={{ marginLeft: 4 }} />
+      : <Icon name="sort-down" size={10} color={theme.colors.text} style={{ marginLeft: 4 }} />;
   };
   
   // Handle invite row click
@@ -254,11 +255,14 @@ const SearchInvitesDashboard = () => {
           <Text style={styles.infoTitle}>{translation.security.scanQR || translation.guest.scanQR}</Text>
           <TouchableOpacity style={styles.scanButton}>
             <View style={styles.scanButtonContent}>
-              <i className="fas fa-camera" style={{
-                fontSize: 18, 
-                color: 'white',
-                marginRight: 8
-              }}></i>
+              <Icon 
+                name="camera"
+                size={18}
+                style={{
+                  color: 'white',
+                  marginRight: 8
+                }}
+              />
               <Text style={styles.scanButtonText}>
                 {translation.security.openCamera || 'Open Camera'}
               </Text>
@@ -351,15 +355,15 @@ const SearchInvitesDashboard = () => {
               <View style={styles.modalHeader}>
                 <Text style={styles.modalTitle}>
                   {selectedInvite?.isVIP ? 
-                    <i className="fas fa-crown" style={{ marginRight: 8, color: '#FFD700' }}></i> : 
-                    null}
+                    <Icon name="crown" size={16} color="#FFD700" style={{ marginRight: 8 }} />
+                    : null}
                   {selectedInvite?.guestName}
                 </Text>
                 <TouchableOpacity 
                   style={styles.closeButton}
                   onPress={() => setModalVisible(false)}
                 >
-                  <i className="fas fa-times" style={{ color: 'white', fontSize: 16 }}></i>
+                  <Icon name="times" size={16} color="white" />
                 </TouchableOpacity>
               </View>
               
@@ -406,31 +410,21 @@ const SearchInvitesDashboard = () => {
                       onPress={handleCheckInOut}
                       disabled={selectedInvite.status !== 'active'}
                     >
-                      {selectedInvite.status === 'active' ? (
-                        <View style={styles.buttonContent}>
-                          <i className={selectedInvite.checkedIn ? "fas fa-sign-out-alt" : "fas fa-sign-in-alt"} 
-                             style={{ color: 'white', fontSize: 16, marginRight: 8 }}></i>
-                          <Text style={styles.buttonText}>
-                            {selectedInvite.checkedIn ? 
-                              translation.security.checkOutGuest : 
-                              translation.security.checkInGuest}
-                          </Text>
-                        </View>
-                      ) : (
-                        <Text style={styles.buttonText}>
-                          {translation.security.noAction || "No Action Available"}
-                        </Text>
-                      )}
+                      <Text style={styles.buttonText}>
+                        {selectedInvite.status === 'active' ? (
+                          selectedInvite.checkedIn ? translation.security.checkOut : translation.security.checkIn
+                        ) : (
+                          translation.security.noAction || "No Action Available"
+                        )}
+                      </Text>
                     </TouchableOpacity>
                     
                     <TouchableOpacity 
                       style={styles.viewIdButton}
                       onPress={handleViewID}
                     >
-                      <View style={styles.buttonContent}>
-                        <i className="fas fa-id-card" style={{ color: 'white', fontSize: 16, marginRight: 8 }}></i>
-                        <Text style={styles.buttonText}>{translation.security.viewID}</Text>
-                      </View>
+                      <Icon name="camera" size={16} color="white" style={{ marginRight: 8 }} />
+                      <Text style={styles.buttonText}>{translation.security.viewID}</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -448,34 +442,23 @@ const SearchInvitesDashboard = () => {
         >
           <View style={styles.modalOverlay}>
             <View style={styles.idModalContainer}>
-              <View style={styles.modalHeader}>
-                <Text style={styles.modalTitle}>
-                  {translation.security.guestID}
+              <View style={styles.idModalHeader}>
+                <Text style={styles.idModalTitle}>
+                  <Icon name="id-card" size={16} color="white" style={{ marginRight: 8 }} />
+                  {translation.security.viewID}
                 </Text>
                 <TouchableOpacity 
                   style={styles.closeButton}
                   onPress={() => setIdModalVisible(false)}
                 >
-                  <i className="fas fa-times" style={{ color: 'white', fontSize: 16 }}></i>
+                  <Icon name="times" size={16} color="white" />
                 </TouchableOpacity>
               </View>
-              
-              <View style={styles.idModalContent}>
-                <Image 
-                  source={mockID} 
-                  style={styles.idImage}
-                  resizeMode="contain"
-                />
-                
-                <TouchableOpacity 
-                  style={styles.closeIdButton}
-                  onPress={() => setIdModalVisible(false)}
-                >
-                  <View style={styles.buttonContent}>
-                    <Text style={styles.buttonText}>{translation.security.closeID}</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
+              <Image 
+                source={mockID} 
+                style={styles.idImage}
+                resizeMode="contain"
+              />
             </View>
           </View>
         </Modal>
@@ -717,11 +700,6 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     alignItems: 'center',
   },
-  buttonContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
@@ -734,20 +712,29 @@ const styles = StyleSheet.create({
     borderRadius: theme.roundness,
     overflow: 'hidden',
   },
-  idModalContent: {
+  idModalHeader: {
+    backgroundColor: theme.colors.primary,
     padding: theme.spacing.m,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  idModalTitle: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   idImage: {
     width: '100%',
     height: 300,
     marginBottom: theme.spacing.m,
   },
-  closeIdButton: {
-    backgroundColor: theme.colors.primary,
-    borderRadius: theme.roundness,
-    padding: theme.spacing.m,
-    width: '100%',
+  closeButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 });

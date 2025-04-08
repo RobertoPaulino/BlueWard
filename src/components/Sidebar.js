@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Platform, Image, Animated } from 'react-native';
 import { useUser } from '../context/UserContext';
 import { useLanguage } from '../context/LanguageContext';
+import Icon from './Icon';
 import theme from '../styles/theme';
 import UserTypeSwitcher from './UserTypeSwitcher';
 
@@ -134,11 +135,7 @@ const Sidebar = ({ onItemPress, logo, navigateTo }) => {
   const SwitchUserButton = (
     <View style={styles.switchUserButton}>
       <View style={styles.switchUserContent}>
-        <i className="fas fa-exchange-alt" style={{
-          fontSize: 14, 
-          color: 'white',
-          marginRight: 8,
-        }}></i>
+        <Icon name="exchange-alt" size={14} color="white" style={{marginRight: 8}} />
         <Text style={styles.switchUserText}>
           {translation.dashboard?.switchUserDemo || 'Switch user demo'}
         </Text>
@@ -152,13 +149,11 @@ const Sidebar = ({ onItemPress, logo, navigateTo }) => {
       style={styles.closeButton} 
       onPress={() => onItemPress && onItemPress()}
     >
-      <i className="fas fa-times" style={{
-        fontSize: 20,
-        color: 'white',
+      <Icon name="times" size={20} color="white" style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-      }}></i>
+      }} />
     </TouchableOpacity>
   );
   
@@ -217,52 +212,55 @@ const MenuItem = ({ title, onPress }) => {
     const lowerTitle = title.toLowerCase();
     
     // Resident/Guest menu items
-    if (lowerTitle.includes('invite') && lowerTitle.includes('vip')) return "fa-crown";
-    if (lowerTitle.includes('invite') && lowerTitle.includes('manager')) return "fa-tasks";
-    if (lowerTitle.includes('invite')) return "fa-envelope";
-    if (lowerTitle.includes('friend')) return "fa-user-friends";
-    if (lowerTitle.includes('check')) return "fa-clipboard-check";
+    if (lowerTitle.includes('invite') && lowerTitle.includes('vip')) return "crown";
+    if (lowerTitle.includes('invite') && lowerTitle.includes('manager')) return "tasks";
+    if (lowerTitle.includes('invite')) return "envelope";
+    if (lowerTitle.includes('friend')) return "user-friends";
+    if (lowerTitle.includes('check')) return "clipboard-check";
     
     // Guest specific
-    if (lowerTitle.includes('upgrade')) return "fa-level-up-alt";
+    if (lowerTitle.includes('upgrade')) return "level-up-alt";
     
     // Security specific
-    if (lowerTitle.includes('search')) return "fa-search";
-    if (lowerTitle.includes('notification')) return "fa-bell";
+    if (lowerTitle.includes('search')) return "search";
+    if (lowerTitle.includes('notification')) return "bell";
     
     // Admin specific
-    if (lowerTitle.includes('vip')) return "fa-star";
-    if (lowerTitle.includes('linker')) return "fa-link";
-    if (lowerTitle.includes('resident') && lowerTitle.includes('disable')) return "fa-user-slash";
-    if (lowerTitle.includes('guard')) return "fa-shield-alt";
-    if (lowerTitle.includes('account')) return "fa-user-cog";
+    if (lowerTitle.includes('vip')) return "star";
+    if (lowerTitle.includes('linker')) return "link";
+    if (lowerTitle.includes('resident') && lowerTitle.includes('disable')) return "user-slash";
+    if (lowerTitle.includes('guard')) return "shield-alt";
+    if (lowerTitle.includes('account')) return "user-cog";
     
     // Default icons based on general functionality
-    if (lowerTitle.includes('settings')) return "fa-cog";
-    if (lowerTitle.includes('profile')) return "fa-id-card";
-    if (lowerTitle.includes('dashboard')) return "fa-tachometer-alt";
-    if (lowerTitle.includes('home')) return "fa-home";
-    if (lowerTitle.includes('report')) return "fa-chart-bar";
-    if (lowerTitle.includes('log')) return "fa-list";
-    if (lowerTitle.includes('message')) return "fa-comment";
-    if (lowerTitle.includes('calendar')) return "fa-calendar-alt";
+    if (lowerTitle.includes('settings')) return "cog";
+    if (lowerTitle.includes('profile')) return "id-card";
+    if (lowerTitle.includes('dashboard')) return "tachometer-alt";
+    if (lowerTitle.includes('home')) return "home";
+    if (lowerTitle.includes('report')) return "chart-bar";
+    if (lowerTitle.includes('log')) return "list";
+    if (lowerTitle.includes('message')) return "comment";
+    if (lowerTitle.includes('calendar')) return "calendar-alt";
     
     // Default icon as a fallback
-    return "fa-chevron-right";
+    return "chevron-right";
   };
   
   // Get icon element
   const getIcon = () => {
-    const iconClass = getIconForMenuItem(title);
+    const iconName = getIconForMenuItem(title);
     return (
       <View style={styles.menuItemIcon}>
-        <i className={`fas ${iconClass}`} style={{
-          fontSize: 16, 
-          color: 'white',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}></i>
+        <Icon 
+          name={iconName}
+          size={16}
+          style={{
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        />
       </View>
     );
   };
