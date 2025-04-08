@@ -2,7 +2,6 @@
   "name": "blueward",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://robertopaulino.github.io/BlueWard/",
   "dependencies": {
     "@expo/vector-icons": "^14.0.4",
     "@react-navigation/drawer": "^6.6.7",
@@ -33,9 +32,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
