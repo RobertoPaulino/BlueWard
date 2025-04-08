@@ -93,6 +93,7 @@ const Icon = ({ name, style, size = 16, color = '#FFFFFF', ...props }) => {
     return (
       <img
         src={iconPath}
+        alt={`${name} icon`}
         style={{
           width: size,
           height: size,

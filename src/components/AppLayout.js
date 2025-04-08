@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, SafeAreaView, Text, Platform, TouchableOpacity, Dimensions, Animated, Image } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Text, Platform, TouchableOpacity, Dimensions, Animated } from 'react-native';
 import { useLanguage } from '../context/LanguageContext';
 import theme from '../styles/theme';
 import LanguageSelector from './LanguageSelector';
-import UserTypeSwitcher from './UserTypeSwitcher';
 import Sidebar from './Sidebar';
 import { useUser } from '../context/UserContext';
 import logoImage from '../assets/images/logoW.png';
@@ -55,6 +54,7 @@ const SettingsIcon = () => (
   </View>
 );
 
+// eslint-disable-next-line no-unused-vars
 const AppSettingsIcon = () => (
   <View style={styles.menuIcon}>
     <Icon 
@@ -80,6 +80,7 @@ const AppLayout = ({ children, navigateTo }) => {
   const slideAnim = useRef(new Animated.Value(-250)).current; // Start off-screen
   
   // Get user initial for avatar
+  // eslint-disable-next-line no-unused-vars
   const getUserInitial = () => {
     if (!currentUser || !currentUser.fullName) return '?';
     return currentUser.fullName.charAt(0).toUpperCase();
@@ -396,11 +397,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: 275,
     zIndex: 100,
-    backgroundColor: theme.colors.primaryDark, // Updated sidebar background
-    shadowColor: '#000',
-    shadowOffset: { width: 2, height: 0 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3,
+    backgroundColor: theme.colors.primaryDark,
+    boxShadow: '2px 0 3px rgba(0, 0, 0, 0.25)',
     elevation: 5,
   },
   rightSection: {
@@ -487,10 +485,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.roundness,
     padding: 0,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)',
     elevation: 8,
     zIndex: 9999,
     pointerEvents: 'auto',
@@ -531,7 +526,9 @@ const styles = StyleSheet.create({
   appSettingsContainer: {
     padding: theme.spacing.m,
     backgroundColor: theme.colors.primaryDark,
-    borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+    borderTopWidth: 1,
+    borderTopStyle: 'solid',
+    borderTopColor: 'rgba(255, 255, 255, 0.1)',
   },
   settingsHeader: {
     color: 'white',

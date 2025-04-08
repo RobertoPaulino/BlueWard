@@ -238,11 +238,16 @@ export const vipInviteService = {
 };
 
 // Default export with all services
-export default {
+const dataService = {
   user: userService,
-  invite: inviteService,
-  checkIn: checkInService,
-  notification: notificationService,
+  invites: inviteService,
+  checkInOut: checkInService,
   language: languageService,
-  vipInvite: vipInviteService
-}; 
+  storage: {
+    get: getFromStorage,
+    set: setToStorage,
+    remove: removeFromStorage,
+  },
+};
+
+export default dataService; 

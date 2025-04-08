@@ -223,6 +223,23 @@ const InvitesDashboard = () => {
             keyExtractor={item => item.id}
             style={styles.invitesList}
             contentContainerStyle={styles.invitesContent}
+            scrollEventThrottle={16}
+            onTouchStart={(e) => {
+              e.persist();
+              e.preventDefault();
+            }}
+            onTouchMove={(e) => {
+              e.persist();
+              e.preventDefault();
+            }}
+            onScroll={(e) => {
+              e.persist();
+              e.preventDefault();
+            }}
+            scrollEnabled={true}
+            showsVerticalScrollIndicator={true}
+            keyboardShouldPersistTaps="handled"
+            removeClippedSubviews={true}
           />
         )}
         
@@ -370,7 +387,7 @@ const InvitesDashboard = () => {
             
             <View style={styles.modalButtons}>
               <TouchableOpacity 
-                style={styles.cancelButton}
+                style={styles.modalCancelButton}
                 onPress={handleCloseCreateModal}
               >
                 <Text style={styles.cancelButtonText}>
@@ -397,6 +414,9 @@ const InvitesDashboard = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden',
   },
   description: {
     color: 'white',
@@ -405,9 +425,14 @@ const styles = StyleSheet.create({
   },
   invitesList: {
     flex: 1,
+    width: '100%',
+    height: '100%',
+    WebkitOverflowScrolling: 'touch',
+    msOverflowStyle: '-ms-autohiding-scrollbar',
   },
   invitesContent: {
     paddingBottom: theme.spacing.m,
+    minHeight: '100%',
   },
   inviteItem: {
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -461,6 +486,7 @@ const styles = StyleSheet.create({
     padding: theme.spacing.s,
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     marginRight: theme.spacing.s,
   },
   cancelButton: {
@@ -620,7 +646,7 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.m,
     width: '100%',
   },
-  cancelButton: {
+  modalCancelButton: {
     backgroundColor: 'rgba(244, 67, 54, 0.1)',
     borderWidth: 1,
     borderColor: theme.colors.error,

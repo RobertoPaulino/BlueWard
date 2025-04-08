@@ -360,7 +360,7 @@ const SearchInvitesDashboard = () => {
                   {selectedInvite?.guestName}
                 </Text>
                 <TouchableOpacity 
-                  style={styles.closeButton}
+                  style={styles.modalCloseButton}
                   onPress={() => setModalVisible(false)}
                 >
                   <Icon name="times" size={16} color="white" />
@@ -645,7 +645,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  closeButton: {
+  modalCloseButton: {
     width: 30,
     height: 30,
     borderRadius: 15,
@@ -729,7 +729,7 @@ const styles = StyleSheet.create({
     height: 300,
     marginBottom: theme.spacing.m,
   },
-  closeButton: {
+  closeButtonStyle: {
     width: 30,
     height: 30,
     borderRadius: 15,

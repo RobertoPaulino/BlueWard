@@ -29,141 +29,153 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const { login, isLoading } = useUser();
   const { translation } = useLanguage();
-  // Add reference for the password input to allow focus on Enter press
   const passwordInputRef = useRef(null);
 
   const handleLogin = () => {
     login(username, password);
   };
 
-  // Mock social login handling
   const handleSocialLogin = (provider) => {
     console.log(`Attempting to login with ${provider}`);
-    // For demo purposes, we'll just show an alert
     alert(`${provider} login is not implemented in this demo.`);
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <View style={styles.langSelectorContainer}>
-        <LanguageSelector compact={true} />
-      </View>
-      <View style={styles.loginBox}>
-        <View style={styles.logoContainer}>
-          <Image source={logoImage} style={styles.logo} resizeMode="contain" />
+    <ScrollView 
+      style={styles.scrollView}
+      contentContainerStyle={styles.scrollViewContent}
+      keyboardShouldPersistTaps="handled"
+      scrollEventThrottle={16}
+      onStartShouldSetResponder={() => true}
+      onMoveShouldSetResponder={() => true}
+      onResponderGrant={(e) => {
+        e.persist();
+      }}
+      onResponderMove={(e) => {
+        e.persist();
+      }}
+    >
+      <View style={styles.loginContainer}>
+        <View style={styles.langSelectorContainer}>
+          <LanguageSelector compact={true} />
         </View>
-        <Text style={styles.loginTitle}>{translation.common.appName}</Text>
-        <Text style={styles.loginSubtitle}>{translation.auth.login}</Text>
-        
-        <TextInput
-          style={styles.textInput}
-          placeholder={translation.auth.username}
-          placeholderTextColor={theme.colors.placeholder}
-          value={username}
-          onChangeText={setUsername}
-          editable={!isLoading}
-          onSubmitEditing={() => passwordInputRef.current?.focus()}
-          returnKeyType="next"
-          blurOnSubmit={false}
-        />
-        
-        <TextInput
-          ref={passwordInputRef}
-          style={styles.textInput}
-          placeholder={translation.auth.password}
-          placeholderTextColor={theme.colors.placeholder}
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-          editable={!isLoading}
-          onSubmitEditing={handleLogin}
-          returnKeyType="go"
-        />
-        
-        <TouchableOpacity 
-          style={[styles.loginButton, isLoading && styles.loginButtonDisabled]} 
-          onPress={handleLogin}
-          disabled={isLoading}
-        >
-          <Text style={styles.loginButtonText}>
-            {isLoading ? translation.common.loading : (
-              <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                <Icon name="sign-in-alt" style={{fontSize: 16}} />
-                <Text style={{marginLeft: 8, color: 'white', fontWeight: 'bold'}}>{translation.auth.signIn}</Text>
-              </View>
-            )}
+        <View style={styles.loginBox}>
+          <View style={styles.logoContainer}>
+            <Image source={logoImage} style={styles.logo} resizeMode="contain" />
+          </View>
+          <Text style={styles.loginTitle}>{translation.common.appName}</Text>
+          <Text style={styles.loginSubtitle}>{translation.auth.login}</Text>
+          
+          <TextInput
+            style={styles.textInput}
+            placeholder={translation.auth.username}
+            placeholderTextColor={theme.colors.placeholder}
+            value={username}
+            onChangeText={setUsername}
+            editable={!isLoading}
+            onSubmitEditing={() => passwordInputRef.current?.focus()}
+            returnKeyType="next"
+            blurOnSubmit={false}
+          />
+          
+          <TextInput
+            ref={passwordInputRef}
+            style={styles.textInput}
+            placeholder={translation.auth.password}
+            placeholderTextColor={theme.colors.placeholder}
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+            editable={!isLoading}
+            onSubmitEditing={handleLogin}
+            returnKeyType="go"
+          />
+          
+          <TouchableOpacity 
+            style={[styles.loginButton, isLoading && styles.loginButtonDisabled]} 
+            onPress={handleLogin}
+            disabled={isLoading}
+          >
+            <Text style={styles.loginButtonText}>
+              {isLoading ? translation.common.loading : (
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                  <Icon name="sign-in-alt" style={{fontSize: 16}} />
+                  <Text style={{marginLeft: 8, color: 'white', fontWeight: 'bold'}}>{translation.auth.signIn}</Text>
+                </View>
+              )}
+            </Text>
+          </TouchableOpacity>
+          
+          <View style={styles.socialLoginContainer}>
+            <Text style={styles.socialLoginText}>{translation.auth.orSignInWith}</Text>
+            <View style={styles.socialButtonsRow}>
+              <TouchableOpacity 
+                style={[styles.socialButton, styles.gmailButton]} 
+                onPress={() => handleSocialLogin('Gmail')}
+              >
+                <View style={styles.socialButtonContent}>
+                  <Icon name="google" style={{fontSize: 16, color: 'white'}} />
+                  <Text style={styles.socialButtonText}>Gmail</Text>
+                </View>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={[styles.socialButton, styles.appleButton]} 
+                onPress={() => handleSocialLogin('Apple')}
+              >
+                <View style={styles.socialButtonContent}>
+                  <Icon name="apple" style={{fontSize: 16, color: 'white'}} />
+                  <Text style={styles.socialButtonText}>Apple</Text>
+                </View>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                style={[styles.socialButton, styles.xButton]} 
+                onPress={() => handleSocialLogin('X')}
+              >
+                <View style={styles.socialButtonContent}>
+                  <Icon name="twitter" style={{fontSize: 16, color: 'white'}} />
+                  <Text style={styles.socialButtonText}>X</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+          
+          <Text style={styles.forgotPassword}>
+            <Icon name="key" style={{marginRight: 8, fontSize: 12}} />
+            {translation.auth.forgotPassword}
           </Text>
-        </TouchableOpacity>
-        
-        <View style={styles.socialLoginContainer}>
-          <Text style={styles.socialLoginText}>{translation.auth.orSignInWith}</Text>
-          <View style={styles.socialButtonsRow}>
-            <TouchableOpacity 
-              style={[styles.socialButton, styles.gmailButton]} 
-              onPress={() => handleSocialLogin('Gmail')}
-            >
-              <View style={styles.socialButtonContent}>
-                <Icon name="google" style={{fontSize: 16, color: 'white'}} />
-                <Text style={styles.socialButtonText}>Gmail</Text>
-              </View>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={[styles.socialButton, styles.appleButton]} 
-              onPress={() => handleSocialLogin('Apple')}
-            >
-              <View style={styles.socialButtonContent}>
-                <Icon name="apple" style={{fontSize: 16, color: 'white'}} />
-                <Text style={styles.socialButtonText}>Apple</Text>
-              </View>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={[styles.socialButton, styles.xButton]} 
-              onPress={() => handleSocialLogin('X')}
-            >
-              <View style={styles.socialButtonContent}>
-                <Icon name="twitter" style={{fontSize: 16, color: 'white'}} />
-                <Text style={styles.socialButtonText}>X</Text>
-              </View>
-            </TouchableOpacity>
+          
+          {/* Demo credentials */}
+          <View style={styles.demoCredentials}>
+            <Text style={styles.demoTitle}>
+              <Icon name="info-circle" style={{marginRight: 8}} />
+              {translation.auth.demoCredentials}
+            </Text>
+            <Text style={styles.demoText}>
+              <Icon name="home" style={{width: 20, textAlign: 'center', marginRight: 8}} />
+              {translation.auth.resident}: john_resident
+            </Text>
+            <Text style={styles.demoText}>
+              <Icon name="user" style={{width: 20, textAlign: 'center', marginRight: 8}} />
+              {translation.auth.guest}: bob_guest
+            </Text>
+            <Text style={styles.demoText}>
+              <Icon name="shield-alt" style={{width: 20, textAlign: 'center', marginRight: 8}} />
+              {translation.auth.security}: guard_main
+            </Text>
+            <Text style={styles.demoText}>
+              <Icon name="user-shield" style={{width: 20, textAlign: 'center', marginRight: 8}} />
+              {translation.auth.admin}: admin_super
+            </Text>
+            <Text style={styles.demoText}>
+              <Icon name="unlock" style={{width: 20, textAlign: 'center', marginRight: 8}} />
+              {translation.auth.noPasswordRequired}
+            </Text>
           </View>
         </View>
-        
-        <Text style={styles.forgotPassword}>
-          <Icon name="key" style={{marginRight: 8, fontSize: 12}} />
-          {translation.auth.forgotPassword}
-        </Text>
-        
-        {/* Demo credentials */}
-        <View style={styles.demoCredentials}>
-          <Text style={styles.demoTitle}>
-            <Icon name="info-circle" style={{marginRight: 8}} />
-            {translation.auth.demoCredentials}
-          </Text>
-          <Text style={styles.demoText}>
-            <Icon name="home" style={{width: 20, textAlign: 'center', marginRight: 8}} />
-            {translation.auth.resident}: john_resident
-          </Text>
-          <Text style={styles.demoText}>
-            <Icon name="user" style={{width: 20, textAlign: 'center', marginRight: 8}} />
-            {translation.auth.guest}: bob_guest
-          </Text>
-          <Text style={styles.demoText}>
-            <Icon name="shield-alt" style={{width: 20, textAlign: 'center', marginRight: 8}} />
-            {translation.auth.security}: guard_main
-          </Text>
-          <Text style={styles.demoText}>
-            <Icon name="user-shield" style={{width: 20, textAlign: 'center', marginRight: 8}} />
-            {translation.auth.admin}: admin_super
-          </Text>
-          <Text style={styles.demoText}>
-            <Icon name="unlock" style={{width: 20, textAlign: 'center', marginRight: 8}} />
-            {translation.auth.noPasswordRequired}
-          </Text>
-        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -320,6 +332,7 @@ const AppWrapper = () => {
   const { currentUser, isLoading, userType } = useUser();
   const { translation } = useLanguage();
   const [currentScreen, setCurrentScreen] = useState('Home');
+  // eslint-disable-next-line no-unused-vars
   const [previousScreen, setPreviousScreen] = useState(null);
   
   // Animation values
@@ -397,7 +410,7 @@ const AppWrapper = () => {
         ])
       ).start();
     }
-  }, [isLoading]);
+  }, [isLoading, wave1, wave2, logoRotate, logoScale]);
   
   // Check loading state first before checking currentUser
   if (isLoading) {
@@ -669,13 +682,27 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
     marginHorizontal: 5,
   },
+  scrollView: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    backgroundColor: theme.colors.background,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    minHeight: '100%',
+    WebkitOverflowScrolling: 'touch',
+    msOverflowStyle: '-ms-autohiding-scrollbar',
+  },
   loginContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.colors.background,
     padding: theme.spacing.m,
     position: 'relative',
+    width: '100%',
+    height: '100%',
   },
   langSelectorContainer: {
     position: 'absolute',

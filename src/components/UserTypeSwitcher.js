@@ -106,10 +106,11 @@ const UserTypeSwitcher = ({ customButton }) => {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    bottom: theme.spacing.l,
-    right: theme.spacing.l,
-    zIndex: 1000,
+    flexDirection: 'row',
+    backgroundColor: theme.colors.surface,
+    borderRadius: theme.roundness,
+    padding: theme.spacing.s,
+    boxShadow: '0 2px 3px rgba(0, 0, 0, 0.3)',
   },
   floatingButton: {
     backgroundColor: theme.colors.primary,
