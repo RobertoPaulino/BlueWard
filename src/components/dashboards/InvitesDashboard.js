@@ -298,11 +298,11 @@ const InvitesDashboard = () => {
             
             <View style={styles.formGroup}>
               <Text style={styles.formLabel}>
-                {translation.guest.name}
+                {translation.common.fullName}
               </Text>
               <TextInput
                 style={styles.formInput}
-                placeholder={translation.guest.guestName}
+                placeholder={translation.common.fullName}
                 placeholderTextColor={theme.colors.placeholder}
                 value={guestName}
                 onChangeText={setGuestName}
